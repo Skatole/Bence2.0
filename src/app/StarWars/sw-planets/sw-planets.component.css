@@ -1,0 +1,20 @@
+img {
+    max-width: 80%;
+    min-height: auto;
+
+    position: absolute;
+}
+mat-card {
+    margin-left: 20px;
+    margin-top: 10px;
+    max-width: fit-content;
+    position: relative;
+    opacity: 0.85;
+}
+mat-icon {
+    margin-left: 10px;
+}
+.buttons {
+    margin-left: 20px;
+    margin-top: 10px;
+}

@@ -1,0 +1,77 @@
+<button (click)="toggleExchanges = !toggleExchanges">Display</button>
+<div *ngIf="toggleExchanges">
+    <p>imagine that this below is a table </p>
+    <div class="div1">
+        <h1>{{ base }}</h1>
+        <h3>{{ date }}</h3>
+        <p>CAD: {{ rates.CAD }}</p>
+        <p>HKD: {{ rates.HKD }}</p>
+        <p>ISK: {{ rates.ISK }}</p>
+        <p>PHP: {{ rates.PHP }}</p>
+        <p>DKK: {{ rates.DKK }}</p>
+        <p>HUF: {{ rates.HUF }}</p>
+        <p>CZK: {{ rates.CZK }}</p>
+        <p>AUD: {{ rates.AUD }}</p>
+        <p>RON: {{ rates.RON }}</p>
+    </div>
+    <div class="div2">
+        <h1>{{ base2 }}</h1>
+        <h3>{{ date2 }}</h3>
+        <p>CAD: {{ rates2.CAD }}</p>
+        <p>HKD: {{ rates2.HKD }}</p>
+        <p>ISK: {{ rates2.ISK }}</p>
+        <p>PHP: {{ rates2.PHP }}</p>
+        <p>DKK: {{ rates2.DKK }}</p>
+        <p>HUF: {{ rates2.HUF }}</p>
+        <p>CZK: {{ rates2.CZK }}</p>
+        <p>AUD: {{ rates2.AUD }}</p>
+        <p>RON: {{ rates2.RON }}</p>
+    </div>
+</div>
+<div>
+    <select name="val" [(ngModel)]="selectedVal" (click)="getExchanges()">
+        <option value="GBP">GBP</option>
+        <option value="HUF">HUF</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+    </select>
+    <div *ngIf="selected">
+        <p>{{ selectedBase }}</p>
+        <p>{{ selectedDate }}</p>
+        <p>{{ selected | json }}</p>
+    </div>
+</div>
+<div>
+    <p>Compare</p>
+    <label for="one">Select first</label>
+    <select name="val"  [(ngModel)]="first">
+        <option value="GBP">GBP</option>
+        <option value="HUF">HUF</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+    </select>
+    <label for="one">Select second</label>
+    <select name="val"  [(ngModel)]="second">
+        <option value="GBP" *ngIf="first !== 'GBP'">GBP</option>
+        <option value="HUF" *ngIf="first !== 'HUF'">HUF</option>
+        <option value="USD" *ngIf="first !== 'USD'">USD</option>
+        <option value="EUR" *ngIf="first !== 'EUR'">EUR</option>
+    </select>
+    <br>
+    <button [disabled]="first.length === 0 || second.length === 0" (click)="compare()">Compare</button>
+    <br>
+    <p *ngIf="error" [ngStyle]="{backgroundColor: 'red'}">{{ error }}</p>
+</div>
+<div>
+    <p>{{ compares | json }}</p>
+</div>
+<div>
+    <select [(ngModel)]="uno">
+        <option value="cica" >cica</option>
+        <option value="nyuszi" >nyuszi</option>
+    </select>
+    <select [(ngModel)]="dos">
+        <option value="cica" [disabled]="uno === 'cica'">cica</option>
+        <option value="nyuszi" [disabled]="uno === 'nyuszi'">nyuszi</option>
+    </select>
+</div>

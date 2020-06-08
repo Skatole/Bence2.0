@@ -1,0 +1,30 @@
+<div *ngIf="!planet">
+    <mat-form-field>
+        <input matInput type="number" required min="1" max="10"  [(ngModel)]="id">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button (click)="getPlanet()">Get planet</button>
+</div>
+<br>
+    <div *ngIf="planet" class="content">
+        <img [src]="picture" alt="planet">
+        <br>
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>{{ planet.name | uppercase}}   <mat-icon (click)="changeLight()">{{ clicked ? 'wb_sunny' : 'brightness_2' }}</mat-icon><mat-icon>translate</mat-icon></mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p><strong>Diameter: </strong>{{ planet.diameter }}</p>
+                <p><strong>Climate: </strong>{{ planet.climate }}</p>
+                <p><strong>Gravity: </strong>{{ planet.gravity }}</p>
+                <p><strong>Terrain: </strong>{{ planet.terrain }}</p>
+                <p><strong>Population: </strong>{{ planet.population }}</p>
+            </mat-card-content>
+        </mat-card>
+        <div class="buttons">
+            <button mat-raised-button color="warn" (click)="getPreviousPlanet()" [disabled]="id === 1">Previous</button>
+            <button mat-raised-button color="primary" (click)="getNextPlanet()" [disabled]="id === 10">Next</button>
+        </div>
+        
+    </div>
+ <!-- <mat-icon>{{ brightness_2 | wb_sunny }}</mat-icon> -->

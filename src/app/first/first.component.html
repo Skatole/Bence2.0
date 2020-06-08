@@ -1,0 +1,39 @@
+<div>
+    <button mat-raised-button color="primary" (click)="firstVisibility = !firstVisibility">{{ firstVisibility === true ? 'Disable first' : 'Enable first'}}</button>
+    <button mat-raised-button color="accent" (click)="secondVisibility = !secondVisibility">{{ secondVisibility === true ? 'Disable second' : 'Enable second'}}</button>
+</div>
+<div *ngIf="firstVisibility">
+    <mat-form-field appearance="fill">
+        <input type="number" matInput [(ngModel)]="first">
+
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <input type="number" matInput [(ngModel)]="second">
+
+    </mat-form-field>
+    <br>
+    <button (click)="onAddTogether()" mat-raised-button>Add</button>
+    <div *ngIf="sum">
+        <p [ngStyle]="{backgroundColor: sum > 100 ? 'red' : 'green'}">{{ sum }}</p>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <input type="text" matInput [disabled]="editable" [(ngModel)]="item" name="item"
+            minlength="3" maxlength="13">
+        </mat-form-field>
+        <mat-checkbox (click)="editable = !editable">Edit</mat-checkbox>
+        <button (click)="onAddArray()" mat-raised-button
+        [disabled]="!checkLength()"
+        *ngIf="items.length <= 4"
+        >Add to array</button>
+        <p *ngIf="showWarning">You cannot add more items!</p>
+        <div *ngIf="items.length > 0">
+            <p *ngFor="let item of items; let odd = odd" [ngStyle]="{color: odd ? 'purple' : 'black'}">{{item}}</p>
+        </div>
+    </div>
+</div>
+<div *ngIf="secondVisibility">
+    <app-second [array]="items" (emitter)="getValue($event)"></app-second>
+</div>
+<button (click)="navigateToPokemons()" mat-raised-button>Pokemons</button>

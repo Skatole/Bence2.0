@@ -1,0 +1,8 @@
+<p *ngIf="array.length !== 0">(lastItemInArray:)</p>
+<p>{{ array[array.length - 1]}} </p>
+<div>
+    <mat-form-field appearance="fill" color="accent">
+        <input type="text" matInput [(ngModel)]="passText" name="passText">
+    </mat-form-field>
+    <button (click)="passValue()" mat-raised-button color="warn">PassToParent</button>
+</div>
